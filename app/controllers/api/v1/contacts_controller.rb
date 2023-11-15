@@ -4,38 +4,38 @@ class Api::V1::ContactsController < ApplicationController
 
   def create
     begin
-    	JSON.parse(request.body.read)
-	    
-	    @contact = Contact.new(permit_contact_params)
+      JSON.parse(request.body.read)
 
-	    if @contact.save
-	      render json: @contact, status: :created
-	    else
-	      render json: @contact.errors, status: :unprocessable_entity
-	    end
-	  rescue StandardError => e
+      @contact = Contact.new(permit_contact_params)
+
+      if @contact.save
+        render json: { status: 'success', data: @contact, message: 'Contact was successfully created.' }, status: :created
+      else
+        render json: { status: 'error', data: @contact.errors, message: 'Failed to create Contact' }, status: :unprocessable_entity
+      end
+    rescue StandardError => e
       render json: { status: 'error', message: "An error occurred: #{e.message}" }, status: :internal_server_error
-    end 
+    end
   end
 
   def update
-  	begin
-  		JSON.parse(request.body.read)
+    begin
+      JSON.parse(request.body.read)
 
-	    @contact = Contact.find(params[:id])
+      @contact = Contact.find(params[:id])
 
-	    if @contact.update(permit_contact_params)
-	      render json: @contact
-	    else
-	      render json: @contact.errors, status: :unprocessable_entity
-	    end
-	  rescue StandardError => e
+      if @contact.update(permit_contact_params)
+        render json: { status: 'success', data: @contact, message: 'Contact was successfully updated.' }, status: :created
+      else
+        render json: { status: 'error', data: @contact.errors, message: 'Failed to update contact' }, status: :unprocessable_entity
+      end
+    rescue StandardError => e
       render json: { status: 'error', message: "An error occurred: #{e.message}" }, status: :internal_server_error
     end 
   end
 
   def index
-		@contacts = Contact.paginate :per_page => PER_PAGE, :page => params[:page]
+    @contacts = Contact.paginate :per_page => PER_PAGE, :page => params[:page]
   end
 
   private

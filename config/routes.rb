@@ -7,5 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'webhooks/receive', to: 'webhooks#receive'
+
   root "api/v1/contacts#index"
+
 end
