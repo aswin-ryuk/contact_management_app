@@ -1,0 +1,28 @@
+<h2>Contacts</h2>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.first_name %></td>
+        <td><%= contact.last_name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.phone_number %></td>
+        <td><%= contact.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= render partial: 'shared/pagination', locals: {list_object: @contacts} %>
