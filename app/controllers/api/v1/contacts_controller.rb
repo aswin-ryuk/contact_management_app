@@ -25,7 +25,7 @@ class Api::V1::ContactsController < ApplicationController
       @contact = Contact.find(params[:id])
 
       if @contact.update(permit_contact_params)
-        render json: { status: 'success', data: @contact, message: 'Contact was successfully updated.' }, status: :created
+        render json: { status: 'success', data: @contact, message: 'Contact was successfully updated.' }, status: :ok
       else
         render json: { status: 'error', data: @contact.errors, message: 'Failed to update contact' }, status: :unprocessable_entity
       end

@@ -33,10 +33,11 @@ gem 'jquery-rails'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'delayed_job_active_record'
 gem 'httparty'
+gem 'rspec-rails', '~> 4.1.0'
+gem 'rails-controller-testing'
+gem 'factory_girl_rails', '4.8.0'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
 end
 
