@@ -8,7 +8,7 @@ class Contact < ApplicationRecord
   validates :phone_number, presence: true, format: { with: /\A\d{10}\z/ }
 
   def notify_third_party_endpoints
-    Rails.application.secrets[:api_endpoints].each do |endpoint|
+    ENV["API_ENDPOINTS"].split(',').each do |endpoint|
       WebhookNotifierJob.perform_later(self.attributes, endpoint)
     end
   end

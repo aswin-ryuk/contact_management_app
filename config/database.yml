@@ -85,6 +85,7 @@ test:
 #
 production:
   <<: *default
-  database: ContactManagementApp_production
-  username: ContactManagementApp
-  password: <%= ENV['CONTACTMANAGEMENTAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: render_aswin_production_db
+  username: aswin_ryuk_production
+  password: 
